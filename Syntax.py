@@ -42,7 +42,7 @@ def open_file():
     my_text.delete("1.0", END)
     root.title()
     #get file name
-    text_file = filedialog.askopenfilename(initialdir="C:/Users/Vaggelis/Desktop", title="Open File", filetype=(("Text Files", "*.txt"), ("Python Files", "*.py"), ("C Files", "*.c"), ("JSON Files", "*.json"), ("Lua Files", "*.lua")))
+    text_file = filedialog.askopenfilename(initialdir="C:/Users/DefaultUser/Desktop", title="Open File", filetype=(("Text Files", "*.txt"), ("Python Files", "*.py"), ("C Files", "*.c"), ("JSON Files", "*.json"), ("Lua Files", "*.lua")))
     name = text_file
     if text_file:
     	global open_status_name
@@ -57,7 +57,7 @@ def open_file():
     highlight(Event)
 def save_as():
     #get file name
-    text_file = filedialog.asksaveasfilename(defaultextension=".*", initialdir="C:/Users/Vaggelis/Desktop", title="Save File", filetypes=(("Text Files", "*.txt"), ("Python Files", "*py"), ("C Files", "*.c"), ("Other", "*.")))
+    text_file = filedialog.asksaveasfilename(defaultextension=".*", initialdir="C:/Users/DefaultUser/Desktop", title="Save File", filetypes=(("Text Files", "*.txt"), ("Python Files", "*py"), ("C Files", "*.c"), ("Other", "*.")))
     if text_file:
         name = text_file
         root.title(f'{name} | Syntax')
