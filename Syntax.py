@@ -2,6 +2,7 @@ from tkinter import *
 from tkinter import filedialog
 import TKlighter
 import keyword
+import os
 root = Tk()
 root.title('Syntax | Version 0.1')
 root.geometry("1200x660")
@@ -39,22 +40,23 @@ def new_file():
     global open_status_name
     open_status_name = False
 def open_file():
-    my_text.delete("1.0", END)
     root.title()
     #get file name
     text_file = filedialog.askopenfilename(initialdir="C:/Users/DefaultUser/Desktop", title="Open File", filetype=(("Text Files", "*.txt"), ("Python Files", "*.py"), ("C Files", "*.c"), ("JSON Files", "*.json"), ("Lua Files", "*.lua")))
-    name = text_file
+    name = os.path.basename(text_file)
     if text_file:
     	global open_status_name
+    	my_text.delete("1.0", END)
     	open_status_name = text_file
-    root.title(f'{name} | Syntax')
+    	root.title(f'{name} | Syntax')
     #open file
-    text_file = open(text_file, 'r')
-    content = text_file.read()
-    #add the file to text box
-    my_text.insert(END, content)
-    text_file.close()
-    highlight(Event)
+    if text_file:
+        text_file = open(text_file, 'r')
+        content = text_file.read()
+        #add the file to text box
+        my_text.insert(END, content)
+        text_file.close()
+        highlight(Event)
 def save_as():
     #get file name
     text_file = filedialog.asksaveasfilename(defaultextension=".*", initialdir="C:/Users/DefaultUser/Desktop", title="Save File", filetypes=(("Text Files", "*.txt"), ("Python Files", "*py"), ("C Files", "*.c"), ("Other", "*.")))
@@ -129,45 +131,3 @@ edit_menu.add_separator()
 edit_menu.add_command(label="Re-Do")
 highlight(Event)
 root.mainloop()
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
