@@ -1,6 +1,6 @@
 from tkinter import *
 from tkinter import filedialog
-import TKlighter
+import stlighting
 import keyword
 import os
 root = Tk()
@@ -22,7 +22,7 @@ text_scroll.pack(side=RIGHT, fill=Y)
 text_scroll_h.pack(side=BOTTOM, fill=X)
 
 #text box
-my_text = Text(my_frame, width=19000, height=190000, font=("Fixedsys", 24), undo=True, wrap=NONE, yscrollcommand=text_scroll.set, xscrollcommand=text_scroll_h.set, bg=rgb_color((40, 40, 40)), fg=rgb_color((255, 255, 255)), insertbackground='white')
+my_text = Text(my_frame, width=19000, height=190000, font=("Courier New", 14), undo=True, wrap=NONE, yscrollcommand=text_scroll.set, xscrollcommand=text_scroll_h.set, bg=rgb_color((40, 40, 40)), fg=rgb_color((255, 255, 255)), insertbackground='white')
 my_text.pack()
 
 #scrollbar config
@@ -36,7 +36,7 @@ root.config(menu=my_menu)
 def new_file():
     my_text.delete("1.0", END)
     #Update status bar
-    root.title('New File - Syntax')
+    root.title("New File - Syntax")
     global open_status_name
     open_status_name = False
 def open_file():
@@ -59,7 +59,7 @@ def open_file():
         highlight(Event)
 def save_as():
     #get file name
-    text_file = filedialog.asksaveasfilename(defaultextension=".*", initialdir="C:/Users/DefaultUser/Desktop", title="Save File", filetypes=(("Text Files", "*.txt"), ("Python Files", "*py"), ("C Files", "*.c"), ("Other", "*.")))
+    text_file = filedialog.asksaveasfilename(defaultextension=".*", initialdir="C:/Users/DefaultUser/Desktop", title="Save File", filetypes=(("Other", "*."), ("Python Files", "*py"), ("C Files", "*.c"), ("Text file", "*.txt")))
     if text_file:
         name = text_file
         root.title(f'{name} | Syntax')
@@ -77,34 +77,37 @@ def save():
         save_as()
 def highlight(event):
     #Keywords
-    TKlighter.def_h(my_text, rgb_color((3, 94, 252)))
-    TKlighter.import_h(my_text, rgb_color((3, 94, 252)))
-    TKlighter.from_h(my_text, rgb_color((3, 94, 252)))
-    TKlighter.print_h(my_text, rgb_color((252, 3, 3)))
-    TKlighter.if_h(my_text, rgb_color((252, 3, 3)))
-    TKlighter.global_h(my_text, rgb_color((3, 94, 252)))
-    TKlighter.while_h(my_text, rgb_color((252, 3, 3)))
-    TKlighter.elif_h(my_text, rgb_color((252, 3, 3)))
-    TKlighter.else_h(my_text, rgb_color((252, 3, 3)))	
+    stlighting.def_h(my_text, rgb_color((97, 158, 255)))
+    stlighting.import_h(my_text, rgb_color((3, 94, 252)))
+    stlighting.from_h(my_text, rgb_color((3, 94, 252)))
+    stlighting.print_h(my_text, rgb_color((252, 3, 3)))
+    stlighting.if_h(my_text, rgb_color((252, 3, 3)))
+    stlighting.global_h(my_text, rgb_color((3, 94, 252)))
+    stlighting.while_h(my_text, rgb_color((252, 3, 3)))
+    stlighting.elif_h(my_text, rgb_color((252, 3, 3)))
+    stlighting.else_h(my_text, rgb_color((252, 3, 3)))
+    stlighting.for_h(my_text, rgb_color((252, 3, 3)))
+    stlighting.in_h(my_text, rgb_color((252, 3, 3)))
+    stlighting.open_h(my_text, rgb_color((252, 3, 3)))	
     #numbers
-    TKlighter.zero_h(my_text, rgb_color((173, 255, 161)))
-    TKlighter.one_h(my_text, rgb_color((173, 255, 161)))
-    TKlighter.two_h(my_text, rgb_color((173, 255, 161)))
-    TKlighter.three_h(my_text, rgb_color((173, 255, 161)))
-    TKlighter.four_h(my_text, rgb_color((173, 255, 161)))
-    TKlighter.five_h(my_text, rgb_color((173, 255, 161)))
-    TKlighter.six_h(my_text, rgb_color((173, 255, 161)))
-    TKlighter.seven_h(my_text, rgb_color((173, 255, 161)))
-    TKlighter.eight_h(my_text, rgb_color((173, 255, 161)))
-    TKlighter.nine_h(my_text, rgb_color((173, 255, 161)))
+    stlighting.zero_h(my_text, rgb_color((255, 251, 0)))
+    stlighting.one_h(my_text, rgb_color((255, 251, 0)))
+    stlighting.two_h(my_text, rgb_color((255, 251, 0)))
+    stlighting.three_h(my_text, rgb_color((255, 251, 0)))
+    stlighting.four_h(my_text, rgb_color((255, 251, 0)))
+    stlighting.five_h(my_text, rgb_color((255, 251, 0)))
+    stlighting.six_h(my_text, rgb_color((255, 251, 0)))
+    stlighting.seven_h(my_text, rgb_color((255, 251, 0)))
+    stlighting.eight_h(my_text, rgb_color((255, 251, 0)))
+    stlighting.nine_h(my_text, rgb_color((255, 251, 0)))
     #True/False
-    TKlighter.True_h(my_text, rgb_color((3, 94, 252)))
-    TKlighter.False_h(my_text, rgb_color((3, 94, 252)))
+    stlighting.True_h(my_text, rgb_color((97, 158, 255)))
+    stlighting.False_h(my_text, rgb_color((97, 158, 255)))
+    #methods
+    stlighting.custom_regex_h(my_text, "range", rgb_color((3, 94, 252)))
     #Strings
-    TKlighter.custom_regex_h(my_text, r'"\w+"', rgb_color((255, 251, 0)))
-    TKlighter.custom_regex_h(my_text, r"'\w+'", rgb_color((255, 251, 0)))
-    TKlighter.custom_regex_h(my_text, r'#\w+', rgb_color((255, 94, 0)))
-
+    stlighting.single_qouts_h(my_text, rgb_color((255, 251, 0)))
+    stlighting.double_qouts_h(my_text, rgb_color((255, 251, 0)))
 
 my_text.bind('<Key>', highlight)
 #File menu
