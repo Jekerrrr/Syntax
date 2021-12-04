@@ -1,7 +1,6 @@
 from tkinter import *
 import tkinter as tk
 import re
-#Split each line by new-line character 
 #Syntax highligthing
 def if_h(Text_widget, color):
     Text_widget.tag_remove("tag_ifh", "1.0", Text_widget.index('end'))
